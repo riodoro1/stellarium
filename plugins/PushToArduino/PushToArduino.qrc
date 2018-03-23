@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/pushToArduino">
+        <file>bt_pushto_track_off.png</file>
+        <file>bt_pushto_track_on.png</file>
+        <file>bt_pushto_set_off.png</file>
+        <file>bt_pushto_set_on.png</file>
+        <file>pushto_marker.png</file>
+    </qresource>
+</RCC>

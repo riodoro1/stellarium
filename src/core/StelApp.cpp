@@ -188,6 +188,10 @@ Q_IMPORT_PLUGIN(RemoteControlStelPluginInterface)
 Q_IMPORT_PLUGIN(RemoteSyncStelPluginInterface)
 #endif
 
+#ifdef USE_STATIC_PLUGIN_PUSHTOARDUINO
+Q_IMPORT_PLUGIN(PushToArduinoStelPluginInterface)
+#endif
+
 // Initialize static variables
 StelApp* StelApp::singleton = Q_NULLPTR;
 qint64 StelApp::startMSecs = 0;

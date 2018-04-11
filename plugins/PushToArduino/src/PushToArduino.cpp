@@ -68,6 +68,8 @@ PushToArduino::PushToArduino()
 ,configureDialog(NULL)
 ,telescopeAim(0.,0.)
 ,isMovingToTelescope(false)
+,hasAim(false)
+,isTracking(false)
 {
     setObjectName("PushToArduino");
     serialComm = new PushToSerialComm();
@@ -147,19 +149,7 @@ void PushToArduino::init()
     connect(serialComm, SIGNAL(connected()), this, SLOT(portConnected()));
     connect(serialComm, SIGNAL(disconnected()), this, SLOT(portDisconnected()));
     connect(serialComm, SIGNAL(recievedAim(float, float)), this, SLOT(portRecievedAim(float, float)));
-    
-    PTA_DEBUG (
-    if ( !serialComm->isConnected() ) {
-        if ( serialComm->openPort("tty.wchusbserial1420") )
-            qDebug()<<"Debug connection aquired";
-        else if ( serialComm->openPort("tty.wchusbserial1410") )
-            qDebug()<<"Debug connection aquired";
-    }
-    )
 }
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-parameter"
 
 void PushToArduino::update(double time) {
     Vec2d currentAim = getUserAimAzAlt();
@@ -191,8 +181,6 @@ void PushToArduino::update(double time) {
         
     }
 }
-
-#pragma clang diagnostic pop
 
 /*************************************************************************
  Draw our module. This should draw line in the main window

@@ -88,10 +88,10 @@ void PushToSerialComm::sendJ2000(float ra, float dec) {
         data.append(MAGIC_NUMBER);
         Q_ASSERT(data.size() == 10);
         
-        PTA_DEBUG_PRINT("Sending J2000: ");
-        PTA_DEBUG_PRINT(data.toHex());
-        PTA_DEBUG_PRINT(*reinterpret_cast<const float*>(data.mid(1,4).constData()));
-        PTA_DEBUG_PRINT(*reinterpret_cast<const float*>(data.right(4).constData()));
+        //PTA_DEBUG_PRINT("Sending J2000: ");
+        //PTA_DEBUG_PRINT(data.toHex());
+        //PTA_DEBUG_PRINT(*reinterpret_cast<const float*>(data.mid(1,4).constData()));
+        //PTA_DEBUG_PRINT(*reinterpret_cast<const float*>(data.right(4).constData()));
         
         serialPort->write(data);
     }

@@ -74,7 +74,7 @@ private:
     
     Vec2d telescopeAim;                                                // current telescope aim, {Az, Alt} in degrees
     bool hasAim;                                                        // flag saying if the aim has been set
-    bool isTracking = false;                                            // flag saying if we are tracking
+    bool isTracking;                                                    // flag saying if we are tracking
     
     bool isMovingToTelescope;                                           // set whenever the stellarium is currently moving to the telescope aim
     double movementDuration;                                            // how long we have been moving

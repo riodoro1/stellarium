@@ -230,14 +230,20 @@ void PushToArduino::drawAimLabels(StelPainter *painter) {
     painter->setFont(font);
     QFontMetrics metrics = painter->getFontMetrics();
     
-    QString altAzString = QString("Az/Alt: ") + StelUtils::radToDmsStr(radTelescopeAim[0]) + "/" + StelUtils::radToDmsStr(radTelescopeAim[1]);
-    QString j2000String = QString("Ra/Dec: ") + StelUtils::radToHmsStr(j2000Aim[0]) + "/" + StelUtils::radToDmsStr(j2000Aim[1]);
+    QString azAltLabel = "Az/Alt:";
+    QString j2000Label = "Ra/Dec:";
+    QString altAzString = StelUtils::radToDmsStr(radTelescopeAim[0]) + "/" + StelUtils::radToDmsStr(radTelescopeAim[1]);
+    QString j2000String = StelUtils::radToHmsStr(j2000Aim[0]).trimmed() + "/" + StelUtils::radToDmsStr(j2000Aim[1]);
     QString errorString = QString(tr("Measurement error, please realign."));
     
-    int textHeight = metrics.tightBoundingRect(altAzString).size().height();
+    int textHeight = metrics.tightBoundingRect(azAltLabel).size().height();
 
-    painter->drawText(0 + (13.*scale), viewportHeight - (13.+textHeight) * scale , altAzString);
-    painter->drawText(0 + (13.*scale), viewportHeight - (15.+2.*textHeight) * scale , j2000String);
+    painter->drawText(0 + (13.*scale), viewportHeight - (13.+textHeight) * scale , azAltLabel);
+    painter->drawText(0 + (13.*scale), viewportHeight - (15.+2.*textHeight) * scale , j2000Label);
+
+    painter->drawText(60 + (13.*scale), viewportHeight - (13.+textHeight) * scale , altAzString);
+    painter->drawText(60 + (13.*scale), viewportHeight - (15.+2.*textHeight) * scale , j2000String);
+
     if ( serialComm->deviceReportsError() ) {
         painter->drawText(0 + (13.*scale), viewportHeight - (17.+3.*textHeight) * scale , errorString);
     }
